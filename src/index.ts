@@ -1,10 +1,24 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 
+interface MessageText{
+  message: string
+} 
+
+const kvMessage: MessageText = {
+  message: 'hello'
+}
+
 const app = new Hono()
 
 app.get('/', (c) => {
-  return c.json({"message":"hello"})
+  return c.json(kvMessage)
+})
+
+app.post('/api/message', async (c) => {
+  const {message} = await c.req.json()
+  kvMessage.message = message
+  return c.json(message) 
 })
 
 serve({
