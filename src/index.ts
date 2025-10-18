@@ -3,10 +3,12 @@ import { Hono } from 'hono'
 
 interface MessageText{
   message: string
+  color: string
 } 
 
 const kvMessage: MessageText = {
-  message: 'hello'
+  message: 'hello',
+  color: '0xff9900'
 }
 
 const app = new Hono()
@@ -16,9 +18,10 @@ app.get('/', (c) => {
 })
 
 app.post('/api/message', async (c) => {
-  const {message} = await c.req.json()
+  const {message, color,} = await c.req.json()
   kvMessage.message = message
-  return c.json(message) 
+  kvMessage.color = color
+  return c.json(message,color) 
 })
 
 serve({
