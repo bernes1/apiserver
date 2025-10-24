@@ -4,6 +4,10 @@ import message from "./routes/message.js";
 
 const app = new Hono()
 
+
+app.get("/", async (c) => {
+    return c.text("Hello World!");
+})
 app.route("/api/message", message)
 
 
