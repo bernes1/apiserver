@@ -96,7 +96,7 @@ message.get('/html', (c) => {
             const formData = new FormData(form);
 
             try {
-                const response = await fetch("http://localhost:3000/api/message/form", {
+                const response = await fetch("https://api.duky.dev/api/message/form", {
                     method: "POST",
                     body: formData,
                 });
