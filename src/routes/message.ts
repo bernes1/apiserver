@@ -63,8 +63,8 @@ message.get('/html', (c) => {
     <body>
     <div id="currentmessage" class="currentmessage">
         <h1>Message center</h1>
-        <p>${kvMessage.message}</p>
-        <p>${color}</p>
+        <p>message: ${kvMessage.message}</p>
+        <p>color: ${color}</p>
     </div>
     
     
