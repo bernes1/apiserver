@@ -1,32 +1,15 @@
-import { serve } from '@hono/node-server'
-import { Hono } from 'hono'
-
-interface MessageText{
-  message: string
-  color: string
-} 
-
-const kvMessage: MessageText = {
-  message: 'hello',
-  color: '0xff9900'
-}
+import {serve} from '@hono/node-server'
+import {Hono} from 'hono'
+import message from "./routes/message.js";
 
 const app = new Hono()
 
-app.get('/', (c) => {
-  return c.json(kvMessage)
-})
+app.route("/api/message", message)
 
-app.post('/api/message', async (c) => {
-  const {message, color,} = await c.req.json()
-  kvMessage.message = message
-  kvMessage.color = color
-  return c.json(message,color) 
-})
 
 serve({
-  fetch: app.fetch,
-  port: 3000
+    fetch: app.fetch,
+    port: 3000
 }, (info) => {
-  console.log(`Server is running on http://localhost:${info.port}`)
+    console.log(`Server is running on http://localhost:${info.port}`)
 })
