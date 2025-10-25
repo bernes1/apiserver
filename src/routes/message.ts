@@ -48,6 +48,16 @@ const colorFromHex = (color: string) => {
 
 const message = new Hono()
 
+message.get('/json', (c) => {
+    return c.json(kvMessage)
+})
+
+message.post('/new', async (c) => {
+    const body = await c.req.json()
+    kvMessage.message = body.message
+    kvMessage.color = body.color
+    return c.json(body)
+})
 
 message.get('/new/html', (c) => {
     const color = colorFromHex(kvMessage.color)
@@ -221,10 +231,6 @@ message.get('/new/html', (c) => {
     </html>`)
 })
 
-message.get('/', (c) => {
-    return c.json(kvMessage)
-})
-
 message.post('/new/form', async (c) => {
     const body = await c.req.formData()
     const messageTextRaw = body.get('message')
@@ -250,11 +256,6 @@ message.post('/new/form', async (c) => {
     return c.json({ message: kvMessage.message, color: kvMessage.color })
 })
 
-message.post('/new', async (c) => {
-    const {message, color} = await c.req.json()
-    kvMessage.message = message
-    kvMessage.color = color
-    return c.json(message,color)
-})
+
 
 export default message
