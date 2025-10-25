@@ -1,7 +1,6 @@
 import { Hono } from "hono";
 import {html} from "hono/html";
 
-
 interface MessageText {
     message: string
     color: string
@@ -52,7 +51,6 @@ const message = new Hono()
 
 message.get('/html', (c) => {
     const color = colorFromHex(kvMessage.color)
-    console.log(color)
     return c.html(html`<!DOCTYPE html>
     <html lang="en">
     <head>
