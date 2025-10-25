@@ -49,7 +49,7 @@ const colorFromHex = (color: string) => {
 const message = new Hono()
 
 
-message.get('/html', (c) => {
+message.get('/new/html', (c) => {
     const color = colorFromHex(kvMessage.color)
     return c.html(html`<!DOCTYPE html>
     <html lang="en">
