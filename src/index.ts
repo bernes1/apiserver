@@ -14,7 +14,7 @@ app.get("/", async (c) => {
 })
 
 app.use(
-    '/api/*',
+    '/api/message/new/*',
     basicAuth({
         username: authUser,
         password: authPassword,

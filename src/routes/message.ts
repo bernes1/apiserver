@@ -94,7 +94,7 @@ message.get('/html', (c) => {
             const formData = new FormData(form);
 
             try {
-                const response = await fetch("https://api.duky.dev/api/message/form", {
+                const response = await fetch("https://api.duky.dev/api/message/new/form", {
                     method: "POST",
                     body: formData,
                 });
@@ -225,7 +225,7 @@ message.get('/', (c) => {
     return c.json(kvMessage)
 })
 
-message.post('/form', async (c) => {
+message.post('/new/form', async (c) => {
     const body = await c.req.formData()
     const messageTextRaw = body.get('message')
     const colorRaw = body.get('color')
@@ -250,8 +250,8 @@ message.post('/form', async (c) => {
     return c.json({ message: kvMessage.message, color: kvMessage.color })
 })
 
-message.post('/', async (c) => {
-    const {message, color,} = await c.req.json()
+message.post('/new', async (c) => {
+    const {message, color} = await c.req.json()
     kvMessage.message = message
     kvMessage.color = color
     return c.json(message,color)
