@@ -18,7 +18,7 @@ const colorSelector = (color: string) => {
         case 'green':
             return '0x37FD12'
         case 'yellow':
-            return '0xffff66'
+            return '0xFFD500'
         case 'blue':
             return '0x0000ff'
         case 'white':
@@ -34,7 +34,7 @@ const colorFromHex = (color: string) => {
             return 'red'
         case '0x37FD12':
             return 'green'
-        case '0xffff66':
+        case '0xFFD500':
             return 'yellow'
         case '0x0000ff':
             return 'blue'
